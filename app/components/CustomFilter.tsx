@@ -3,7 +3,7 @@ import { CustomFilterProps } from '@/types'
 
 function CustomFilter({title,options}:CustomFilterProps) {
   return (
-    <div>CustomFilter</div>
+    <div>CustomFilter1</div>
   )
 }
 
