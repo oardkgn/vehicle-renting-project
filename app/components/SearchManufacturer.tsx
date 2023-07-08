@@ -22,7 +22,7 @@ function SearchManufacturer({
 
   return (
     <Combobox value={manufacturer} onChange={setManuFacturer}>
-      <div className="relative w-full">
+      <div className="relative flex-1">
         <Combobox.Button className="absolute top-[14px]">
           <Image
             src="/car-logo.svg"
@@ -48,7 +48,7 @@ function SearchManufacturer({
           afterLeave={() => setQuery("")} // Reset the search query after the transition completes
         >
           <Combobox.Options
-            className="absolute mt-1 max-h-60 overflow-auto  w-full rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+            className="absolute mt-1 max-h-60 overflow-auto z-20  w-full rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
             static
           >
             {filteredManufacturers.length === 0 && query !== "" ? (

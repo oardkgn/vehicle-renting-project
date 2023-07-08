@@ -42,6 +42,10 @@
   @apply flex xl:flex-row flex-col gap-5 relative z-0 max-w-[1440px] mx-auto;
 }
 
+.dark{
+  @apply bg-slate-900
+}
+
 .hero__title {
   @apply 2xl:text-[72px] sm:text-[64px] text-[50px] font-extrabold;
 }
@@ -88,7 +92,7 @@
 
 /* START: Car Card styles */
 .car-card {
-  @apply flex flex-col p-6 justify-center items-start text-black-100 bg-primary-blue-100 hover:bg-white hover:shadow-md rounded-3xl;
+  @apply flex flex-col p-6 z-20 justify-center items-start text-black-100 bg-primary-blue-100 hover:bg-white hover:shadow-md rounded-3xl;
 }
 
 .car-card__content {
