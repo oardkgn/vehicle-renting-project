@@ -3,11 +3,16 @@ import { SearchManuFacturerProps } from "@/types";
 import { Combobox, Transition } from "@headlessui/react";
 import { manufacturers } from "@/constants";
 import Image from "next/image";
+import { useContext } from "react";
+import { ThemeContext } from "../layout";
+
 
 function SearchManufacturer({
   manufacturer,
   setManuFacturer,
 }: SearchManuFacturerProps) {
+
+  const{ darkTheme } = useContext(ThemeContext)
   const [query, setQuery] = useState("");
 
   const filteredManufacturers =
@@ -22,7 +27,7 @@ function SearchManufacturer({
 
   return (
     <Combobox value={manufacturer} onChange={setManuFacturer}>
-      <div className="relative flex-1">
+      <div className="relative flex-1 z-30">
         <Combobox.Button className="absolute top-[14px]">
           <Image
             src="/car-logo.svg"
@@ -34,7 +39,7 @@ function SearchManufacturer({
         </Combobox.Button>
 
         <Combobox.Input
-          className="search-manufacturer__input"
+          className={`search-manufacturer__input !bg-[#f5f8ff] ${ darkTheme && " text-slate-200"}`}
           displayValue={(item: string) => item}
           onChange={(event) => setQuery(event.target.value)} // Update the search query when the input changes
           placeholder="Volkswagen..."

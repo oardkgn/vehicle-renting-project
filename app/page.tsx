@@ -1,15 +1,23 @@
-import { Hero, SearchBar, CustomFilter,CarCard } from "./components";
+
+import { Hero, SearchBar, CustomFilter,CarCard,ShowMore } from "./components";
 import { fuels, yearsOfProduction } from "../constants";
 import { fetchCars } from "@/utils";
 import { FilterProps } from "@/types";
-
+import SearchBarHeader from "./components/SearchBarHeader";
+import { Metadata } from "next";
 
 interface HomeProps {
   searchParams: FilterProps;
 }
 
+export const metadata: Metadata = {
+  title: "Wheelz",
+  description: "Discover world's best car rental application",
+};
+
 
 export default async function Home({ searchParams }: HomeProps) {
+
   const allCars = await fetchCars({
     manufacturer: searchParams.manufacturer || "",
     year: searchParams.year || 2022,
@@ -18,17 +26,16 @@ export default async function Home({ searchParams }: HomeProps) {
     model: searchParams.model || "",
   });
 
+
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
   return (
-    <main className=" overflow-hidden bg-slate-900">
+    <main className={``}>
       <Hero />
 
       <div className="mt-12 padding-x padding-y max-width" id="discover">
-        <div className="home__text-container">
-          <h1 className="text-4xl font-extrabold">Car Catalogue</h1>
-          <p>Explore out cars you might like</p>
-        </div>
+        
+        <SearchBarHeader />
 
         <div className="home__filters">
           <SearchBar />
@@ -46,10 +53,14 @@ export default async function Home({ searchParams }: HomeProps) {
                 <CarCard car={car} />
               ))}
             </div>
+            <ShowMore
+              pageNumber={(searchParams.limit || 10) / 10}
+              isNext={(searchParams.limit || 10) > allCars.length}
+            />
           </section>
         ) : (
           <div className="home__error-container">
-            <h2 className="text-black text-xl font-bold">Oops, no results</h2>
+            <h2 className="text-black text-xl font-bold min-h-[500px]">Oops, no results</h2>
             <p>{allCars?.message}</p>
           </div>
         )}

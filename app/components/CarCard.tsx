@@ -5,6 +5,8 @@ import { calculateCarRent, generateCarImageUrl } from '@/utils';
 import Image from 'next/image';
 import { CustomButton } from '.';
 import CarDetails from './CarDetails';
+import { useContext } from 'react';
+import { ThemeContext } from '../layout';
 
 interface CarCardProps {
     car: CarProps;
@@ -15,15 +17,17 @@ interface CarCardProps {
     const [isOpen, setIsOpen] = useState(false);
     const carRent = calculateCarRent(city_mpg, year);
 
+    const { darkTheme } = useContext(ThemeContext);
+
   return (
-    <div className="car-card group !bg-slate-700">
-      <div className="car-card__content text-slate-200">
+    <div className={`car-card group ${darkTheme && "!bg-slate-700"}`}>
+      <div className={`car-card__content ${darkTheme && "text-slate-200"}`}>
         <h2 className="car-card__content-title ">
           {make} {model}
         </h2>
       </div>
 
-      <p className='flex mt-6 text-[32px] leading-[38px] font-extrabold text-slate-200'>
+      <p className={`flex mt-6 text-[32px] leading-[38px] font-extrabold ${darkTheme && "text-slate-200"}`}>
         <span className='self-start text-[14px] leading-[17px] font-semibold'>$</span>
         {carRent}
         <span className='self-end text-[14px] leading-[17px] font-medium'>/day</span>
@@ -46,7 +50,7 @@ interface CarCardProps {
             <p className="car-card__icon-text">{drive.toUpperCase()}</p>
           </div>
           <div className="car-card__icon">
-            <Image src="/gas.svg" width={20} height={20} alt="seat" />
+            <Image src="/gas.svg" width={20} height={20} alt="gas" />
             <p className="car-card__icon-text">{city_mpg} MPG</p>
           </div>
         </div>

@@ -12,7 +12,12 @@ export interface CustomButtonProps {
 
 export interface CustomFilterProps {
   title:string;
-  options:object;
+  options:OptionProps[];
+}
+
+export interface OptionProps {
+  title: string;
+  value: string;
 }
 
 export interface SearchManuFacturerProps {
@@ -41,4 +46,9 @@ export interface FilterProps {
   model?: string;
   limit?: number;
   fuel?: string;
+}
+
+export interface ShowMoreProps {
+  pageNumber: number;
+  isNext: boolean;
 }

@@ -4,6 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import SearchManufacturer from "./SearchManufacturer";
+import { useContext } from "react";
+import { ThemeContext } from "../layout";
 
 const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
   <button type="submit" className={`-ml-3 z-10 ${otherClasses}`}>
@@ -18,6 +20,8 @@ const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
 );
 
 function SearchBar() {
+  
+  const{ darkTheme } = useContext(ThemeContext)
   const [manufacturer, setManuFacturer] = useState("");
   const [model, setModel] = useState("");
 
@@ -51,7 +55,7 @@ function SearchBar() {
       window.location.pathname
     }?${searchParams.toString()}`;
 
-    router.push(newPathname);
+    router.push(newPathname,{ scroll: false });
   };
 
   return (
@@ -77,7 +81,7 @@ function SearchBar() {
           value={model}
           onChange={(e) => setModel(e.target.value)}
           placeholder="Tiguan..."
-          className="searchbar__input"
+          className={`searchbar__input !bg-[#f5f8ff] focus:!bg-[#f5f8ff] ${darkTheme && "text-slate-200"}`}
         />
         <SearchButton otherClasses="sm:hidden" />
       </div>

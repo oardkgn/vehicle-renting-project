@@ -30,7 +30,7 @@ export default function RootLayout({
 }) {
 
   const [darkTheme, setDarkTheme] = useState(false)
-
+  
 
   return (
     <html lang="en">
@@ -38,10 +38,10 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
 
-      <body className=" relative">
+      <body suppressHydrationWarning={true} className={`${darkTheme && "!bg-slate-900"} relative`}>
         <ThemeContext.Provider value={{ darkTheme, setDarkTheme }}>
           <Navbar />
-          <div className="w-full absolute top-0 bg-slate-900 h-full"></div>
+          <div className={`${darkTheme && "!bg-slate-900 "}" w-full -z-50 absolute top-0  h-full"`}></div>
           {children}
           <Footer />
         </ThemeContext.Provider>

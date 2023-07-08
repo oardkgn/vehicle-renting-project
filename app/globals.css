@@ -63,7 +63,7 @@
 }
 
 .hero__image-overlay {
-  @apply absolute xl:-top-16 xl:-right-[50%] -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-full xl:h-[calc(100vh-100px)] h-[590px] max-h-[800px] overflow-hidden;
+  @apply absolute xl:-top-16 xl:-right-[50%] -right-1/4 bg-hero-bg bg-repeat-round -z-10 w-full xl:h-[calc(100vh)] h-[490px] max-h-[800px];
 }
 /* END: Hero styles */
 
